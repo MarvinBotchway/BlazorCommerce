@@ -1,6 +1,6 @@
 ﻿namespace BlazorCommerce.Client.Services.ProductsService
 {
-    public interface IProductsService
+    public interface IProductService
     {
         public List<ProductModel> Products { get; set; }
 
