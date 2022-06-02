@@ -1,7 +1,13 @@
 ﻿@inject IProductsService ProductService
 
+@if(ProductService.Products == null || ProductService.Products.Count == 0)
+{
+    <span>Loading Products...</span>
+}
 
-<ul class="list-unstyled">
+else
+{
+    <ul class="list-unstyled">
     @foreach (var product in ProductService.Products)
     {
         <li class="media my-3">
@@ -25,6 +31,9 @@
         
     }
 </ul>
+}
+
+
 
 @code {
     protected override async Task OnInitializedAsync()
