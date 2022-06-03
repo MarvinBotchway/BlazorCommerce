@@ -4,6 +4,7 @@
     {
         public List<ProductModel> Products { get; set; }
 
-        Task GetProducts();
+        Task GetProductsAsync();
+        Task<ServiceResponse<ProductModel>> GetSingleProductAsync(int? id);
     }
 }
