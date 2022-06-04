@@ -7,17 +7,18 @@ namespace BlazorCommerce.Server.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private readonly ICategoryService _categoryService;
 
-        public CategoryController(DatabaseContext context)
+        public CategoryController(ICategoryService categoryService)
         {
-            _context = context;
+            _categoryService = categoryService;
         }
 
         [HttpGet]
-        public async Task<ServiceResponse<List<CategoryModel>>> GetCategories()
+        public async Task<ActionResult<ServiceResponse<List<CategoryModel>>>> GetCategories()
         {
-            throw new NotImplementedException();
+            var response = await _categoryService.GetCategoriesAsync();
+            return Ok(response);
         }
     }
 }
