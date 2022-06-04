@@ -22,6 +22,27 @@
             
         }
 
+        public async Task<ServiceResponse<List<ProductModel>>> GetProductsByCategoryAsync(int? categoryId)
+        {
+            var response = new ServiceResponse<List<ProductModel>>();
+            var products = await _context.Products
+                .Where<ProductModel>(p => p.CategoryId == categoryId)
+                .ToListAsync();
+                
+
+            if(products == null)
+            {
+                response.Success = false;
+                response.Message = "Sorry, there are no products in this category";
+            }
+            else
+            {
+                response.Data = products;
+            }
+
+            return response;
+        }
+
         public async Task<ServiceResponse<ProductModel>> GetSingleProductAsync(int? id)
         {
             var response = new ServiceResponse<ProductModel>();
