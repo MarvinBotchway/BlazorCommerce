@@ -32,9 +32,9 @@ namespace BlazorCommerce.Server.Controllers
         }
 
         [HttpGet("Category/{categoryId}")]
-        public async Task<ActionResult<ServiceResponse<ProductModel>>> GetProductsByCategoryAsync(int? categoryId)
+        public async Task<ActionResult<ServiceResponse<ProductModel>>> GetProductsForCategoryAsync(int? categoryId)
         {
-            var response = await _productService.GetProductsByCategoryAsync(categoryId);
+            var response = await _productService.GetProductsForCategoryAsync(categoryId);
             return Ok(response);
         }
 

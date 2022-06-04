@@ -22,7 +22,7 @@
             
         }
 
-        public async Task<ServiceResponse<List<ProductModel>>> GetProductsByCategoryAsync(int? categoryId)
+        public async Task<ServiceResponse<List<ProductModel>>> GetProductsForCategoryAsync(int? categoryId)
         {
             var response = new ServiceResponse<List<ProductModel>>();
             var products = await _context.Products
