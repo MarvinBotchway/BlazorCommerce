@@ -10,6 +10,7 @@ namespace BlazorCommerce.Client.Services.ProductsService
             _http = http;
         }
         public List<ProductModel> Products { get; set; } = new List<ProductModel>();
+        public List<ProductModel> ProductsForCategory { get; set; } = new List<ProductModel>();
 
         public async Task GetProductsAsync()
         {
@@ -18,6 +19,14 @@ namespace BlazorCommerce.Client.Services.ProductsService
             if (result != null && result.Data != null) Products = result.Data;
         }
 
+        public async Task GetProductsForCategoryAsync(int? categoryId)
+        {
+            var response =
+                await _http.GetFromJsonAsync<ServiceResponse<List<ProductModel>>>($"api/product/category/{categoryId}");
+            if (response != null && response.Data != null) ProductsForCategory = response.Data;
+        }
+
+        
         public async Task<ServiceResponse<ProductModel>> GetSingleProductAsync(int? id)
         {
             var response = await _http.GetFromJsonAsync<ServiceResponse<ProductModel>>($"/api/product/{id}");

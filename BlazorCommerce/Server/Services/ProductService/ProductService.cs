@@ -22,11 +22,11 @@
             
         }
 
-        public async Task<ServiceResponse<List<ProductModel>>> GetProductsForCategoryAsync(int? categoryId)
+        public async Task<ServiceResponse<List<ProductModel>>> GetProductsForCategoryAsync(string categoryNameForUrl)
         {
             var response = new ServiceResponse<List<ProductModel>>();
             var products = await _context.Products
-                .Where<ProductModel>(p => p.CategoryId == categoryId)
+                .Where<ProductModel>(p => p.Category.NameForUrl == categoryNameForUrl)
                 .ToListAsync();
                 
 
