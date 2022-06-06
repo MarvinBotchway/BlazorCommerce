@@ -14,7 +14,9 @@
         {
             var response = new ServiceResponse<List<ProductModel>>()
             {
-                Data = await _context.Products.ToListAsync()
+                Data = await _context.Products
+                .Include(p => p.Variants)
+                .ToListAsync()
             };
 
             return response;
@@ -27,6 +29,7 @@
             var response = new ServiceResponse<List<ProductModel>>();
             var products = await _context.Products
                 .Where<ProductModel>(p => p.Category.NameForUrl == categoryNameForUrl)
+                .Include(p => p.Variants)
                 .ToListAsync();
                 
 
@@ -46,7 +49,10 @@
         public async Task<ServiceResponse<ProductModel>> GetSingleProductAsync(int? id)
         {
             var response = new ServiceResponse<ProductModel>();
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                .Include(p => p.Variants)
+                .ThenInclude(v => v.ProductType)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product == null)
             {
