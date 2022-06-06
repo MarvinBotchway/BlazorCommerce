@@ -4,8 +4,7 @@
     {
         event Action ProductsListChanged;
         public List<ProductModel> Products { get; set; }
-
-        Task GetProductsAsync(string? categoryNameForUrl);
+        Task GetProductsAsync(string? categoryNameForUrl = null);
         Task<ServiceResponse<ProductModel>> GetSingleProductAsync(int? id);
     }
 }
