@@ -38,6 +38,13 @@ namespace BlazorCommerce.Server.Controllers
             return Ok(response);
         }
 
+        [HttpGet("Search/{searchText}")]
+        public async Task<ActionResult<ServiceResponse<ProductModel>>> SearchProductsAsync(string searchText)
+        {
+            var response = await _productService.SearchProductsAsync(searchText);
+            return Ok(response);
+        }
+
 
     }
 }
