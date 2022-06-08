@@ -7,5 +7,8 @@
         Task<ServiceResponse<List<ProductModel>>> SearchProductsAsync(string searchText);
 
         Task<ServiceResponse<ProductModel>> GetSingleProductAsync(int? id);
+        Task<ServiceResponse<List<string>>> GetProductSearchSuggestions(string searchText);
+
+        
     }
 }
