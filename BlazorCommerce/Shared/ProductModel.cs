@@ -13,9 +13,9 @@ namespace BlazorCommerce.Shared
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
-        
         public CategoryModel? Category { get; set; }
         public int CategoryId { get; set; }
+        public bool Featured { get; set; } = false;
         public List<ProductVariantModel> Variants { get; set; } = new List<ProductVariantModel>();
 
 

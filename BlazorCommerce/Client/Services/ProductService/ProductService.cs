@@ -17,7 +17,7 @@ namespace BlazorCommerce.Client.Services.ProductsService
         public async Task GetProductsAsync(string? categoryNameForUrl = null)
         {
 
-            string requestUrl = categoryNameForUrl == null ? "api/product" : $"api/product/category/{categoryNameForUrl}";
+            string requestUrl = categoryNameForUrl == null ? "api/product/featured" : $"api/product/category/{categoryNameForUrl}";
 
             var response =
             await _http.GetFromJsonAsync<ServiceResponse<List<ProductModel>>>(requestUrl);

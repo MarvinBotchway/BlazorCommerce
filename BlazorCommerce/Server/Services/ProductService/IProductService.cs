@@ -8,7 +8,8 @@
 
         Task<ServiceResponse<ProductModel>> GetSingleProductAsync(int? id);
         Task<ServiceResponse<List<string>>> GetProductSearchSuggestions(string searchText);
+        Task<ServiceResponse<List<ProductModel>>> GetFeaturedProductsAsync();
 
-        
+
     }
 }
