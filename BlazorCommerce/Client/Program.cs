@@ -1,4 +1,5 @@
 global using BlazorCommerce.Shared;
+global using BlazorCommerce.Shared.DTO;
 global using BlazorCommerce.Client.Services.ProductsService;
 global using BlazorCommerce.Client.Services.CategoryService;
 global using System.Net.Http.Json;

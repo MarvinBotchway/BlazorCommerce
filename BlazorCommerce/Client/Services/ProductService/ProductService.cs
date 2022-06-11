@@ -11,6 +11,9 @@ namespace BlazorCommerce.Client.Services.ProductsService
         }
         public List<ProductModel> Products { get; set; } = new List<ProductModel>();
         public string Message { get; set; } = "Loading Products...";
+        public int CurrentPage { get; set; } = 1;
+        public int PageCount { get; set; } = 0;
+        public string LastSearchText { get; set; } = string.Empty;
 
         public event Action ProductsListChanged;
 
@@ -22,6 +25,16 @@ namespace BlazorCommerce.Client.Services.ProductsService
             var response =
             await _http.GetFromJsonAsync<ServiceResponse<List<ProductModel>>>(requestUrl);
             if (response != null && response.Data != null) Products = response.Data;
+
+            CurrentPage = 1;
+            PageCount = 0;
+
+            if (Products.Count == 0)
+            {
+                Message = "No Products found";
+            }
+
+
 
             ProductsListChanged.Invoke();
         }
@@ -40,16 +53,25 @@ namespace BlazorCommerce.Client.Services.ProductsService
             throw new Exception();
         }
 
-        public async Task SearchProductsAsync(string searchText)
+        public async Task SearchProductsAsync(string searchText, int page)
         {
+            LastSearchText = searchText;
             var response = await _http
-                .GetFromJsonAsync<ServiceResponse<List<ProductModel>>>($"/api/product/search/{searchText}");
+                .GetFromJsonAsync<ServiceResponse<ProductSearchResultDTO>>($"/api/product/search/{searchText}/{page}");
 
             if (response != null && response.Data != null)
-                Products = response.Data;
+            {
+                Products = response.Data.Products;
+                CurrentPage = response.Data.CurrentPage;
+                PageCount = response.Data.Pages;
+            }
+                
             
             if (Products.Count == 0)
+            {
                 Message = "No products found";
+            }
+              
             ProductsListChanged?.Invoke();
         
         }
