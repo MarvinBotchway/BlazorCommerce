@@ -1,4 +1,5 @@
 global using BlazorCommerce.Shared;
+global using BlazorCommerce.Shared.DTO;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorCommerce.Server.Data;
 global using BlazorCommerce.Server.Services.ProductService;
