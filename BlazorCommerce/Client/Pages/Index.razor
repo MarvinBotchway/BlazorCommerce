@@ -5,7 +5,17 @@
 
 <PageTitle>My Shop</PageTitle>
 
-<ProductList/>
+@if (SearchText == null && NameForCategoryUrl == null)
+{
+    <FeaturedProducts/>
+
+}
+else
+{
+    <ProductList/>
+}
+
+
 @code{
     [Parameter]
     public string? NameForCategoryUrl { get; set; } = null;
